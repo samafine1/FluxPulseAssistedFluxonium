@@ -1,0 +1,266 @@
+\documentclass[
+ reprint,
+ superscriptaddress,
+ bibnotes,
+ amsmath,
+ amssymb,
+ aps,
+ prb,
+ citeautoscript,
+ floatfix,
+]{revtex4-2}
+
+
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{bm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true, citecolor={blue!80!black}, urlcolor={blue!50!black}, linkcolor = {blue!80!black}]{hyperref}
+\usepackage{lipsum}  
+\usepackage{upgreek}
+\usepackage{siunitx}
+\usepackage{mathtools}
+% \usepackage{ulem}
+\usepackage{verbatim}
+\usepackage{xfrac}
+\usepackage{xcolor}
+\usepackage[capitalize]{cleveref}
+\usepackage{graphics}
+\usepackage{enumerate}
+%\usepackage{multicol}
+\usepackage{epstopdf}
+\usepackage[symbol]{footmisc}
+\usepackage{nameref,zref-xr}
+\zxrsetup{toltxlabel}
+
+\sisetup{range-phrase=--}
+\sisetup{range-units=single}
+
+% avoids incorrect hyphenation, added Nov/08 by SSR
+\hyphenation{ALPGEN}
+\hyphenation{EVTGEN}
+\hyphenation{PYTHIA}
+
+% Define new commands
+
+\newcommand{\figref}[1]{\mbox{Fig.~\ref{#1}}}
+\newcommand{\tabref}[1]{\mbox{Table~\ref{#1}}}
+\newcommand{\secref}[1]{\mbox{Sec.~\ref{#1}}}
+\newcommand{\chpref}[1]{\mbox{Chapter~\ref{#1}}}
+\newcommand{\appref}[1]{\mbox{Appendix~\ref{#1}}}
+\renewcommand{\eqref}[1]{\mbox{Eq.~(\ref{#1})}}
+
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\newcommand{\ketbra}[2]{\mleft| #1 \rangle \langle #2 \mright|}
+%\newcommand{\brakket}[3]{\mleft\langle #1\mleft| #2 \mright| #3\mright\rangle}
+\newcommand{\brakket}[3]{\langle #1 | #2 | #3 \rangle}
+\newcommand{\expec}[1]{\mleft\langle #1 \mright\rangle}
+\newcommand{\tr}[1]{\text{tr}\mleft( #1 \mright)}
+\newcommand{\expecc}[1]{\text{E}\mleft[#1\mright]}
+
+\newcommand{\comm}[2]{\mleft[ #1, #2 \mright]}
+\newcommand{\lind}[1]{\mathcal{D}\mleft[#1\mright]}
+\newcommand{\meas}[1]{\mathcal{M}\mleft[#1\mright]}
+
+%\newcommand{\sz}{\sigma_z}
+%\newcommand{\sx}{\sigma_x}
+%\newcommand{\sm}{\sigma_-}
+%\renewcommand{\sp}{\sigma_+}
+\newcommand{\sz}{\hat \sigma_z}
+\newcommand{\sx}{\hat \sigma_x}
+\newcommand{\sm}{\hat \sigma_-}
+\renewcommand{\sp}{\hat \sigma_+}
+
+\newcommand{\abs}[1]{\mleft|#1\mright|}
+
+\newcommand{\abssq}[1]{\mleft| #1 \mright|^2}
+
+\newcommand{\im}{\text{Im}}
+\newcommand{\re}{\text{Re}}
+
+\newcommand{\nn}{\nonumber}
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+
+% Letters instead of numbers for footnotes
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% ######################################
+% Start of mortens added command shortcuts
+% ######################################
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{qcircuit}
+\usepackage{dsfont}
+\usepackage{xfrac}
+\usepackage{wasysym}
+\usepackage{mathrsfs}
+\usepackage[capitalize]{cleveref}
+
+\newcommand{\mk}[1]{{\textcolor{red}{#1}}}
+
+\newcommand{\Id}{\mathds{1}}
+\newcommand{\X}[1]{\textsf{X}_{#1}}
+\newcommand{\Y}[1]{\textsf{Y}_{#1}}
+\newcommand{\Z}[1]{\textsf{Z}_{#1}}
+\newcommand{\T}{\textsf{T}}
+\renewcommand{\S}{\textsf{S}}
+\renewcommand{\H}{\textsf{H}}
+\newcommand{\CNOT}{\textsf{CNOT}}
+\newcommand{\iSWAP}{\emph{i}\textsf{SWAP}}
+\newcommand{\bSWAP}{\emph{b}\textsf{SWAP}}
+\newcommand{\CPHASE}{\textsf{CPHASE}}
+\newcommand{\CZ}{\textsf{CZ}}
+\newcommand{\ZX}[1]{\textsf{CR}_{#1}}
+\newcommand{\CR}{\textsf{CR}}
+\newcommand{\freq}{\omega_\text{q}}
+\newcommand{\rf}{\text{rf}}
+\newcommand{\omegad}{\delta\omega}
+\newcommand{\minus}{\scalebox{1}[1.0]{-}}
+\newcommand{\etal}{\emph{et al.}}
+\renewcommand{\d}{\text{d}}
+
+
+\begin{document}
+
+\title{Fluxonium Readout Draft 1}
+\author{Sam Fine}
+\affiliation{The University of Chicago}
+% \footnote{$^\dagger$fine1@uchicago.edu}
+
+\date{\today}
+
+\begin{abstract}
+\textit{Note for Professors Chong and Viszlai:} this is draft far from finished... I have not yet added any citations or visuals. Nevertheless, I figured I should send out what I had, irrespective of its state. I appreciate any feedback- suggestions, corrections, questions, extensions, ideas, or any other form of comment is welcome! - Sam
+\end{abstract}
+
+% \pacs{}
+\maketitle
+
+\section{Introduction}
+%%% -- INTRODUCTION -- %%%
+     Repeatable, high fidelity, fast, Quantum non-demolition (QND) readout of Fluxonium qubits has proven difficult to realize experimentally. This review intends to contextualize the underlying reasons for this difficulty by analyzing several approaches for improving readout methods. 
+
+\subsection{ Organization of Article}
+ First, in Sec. II, we outline the theory and practice underlying the widely-adopted dispersive readout scheme for superconducting qubits. 
+
+With this context, in Sec. III, we juxtapose two papers on measurement-induced state transitions (MISTs). The first paper concentrates on a mechanism by which parasitic modes of the Josephson Junction array in fluxonium can excite the qubit, and identifies under what conditions these deleterious transitions are suppressed. The second paper seeks to establish qubit purity and matrix-element error as benchmarks to use in identifying ideal parameters for the dispersive regime. We compare and contrast the conclusions and methodology of each paper before couching the discussion of MISTs within the broader dispersive regime established in the previous section.
+
+In Sec. IV, we summarize two papers that investigate the dispersive regime and utilize this understanding to optimize the environmental parameters for readout. In particular, we analyze a paper proposing flux-pulse-assisted readout, which  seeks to overcome the trade-off between fidelity and measurement speed by finding points of large dispersive shift. We then analyze a paper modeling the state evolution of the coupled system to determine the source of non-QND effects.
+
+Finally, in Sec. V, we remark on extensions of the MIST studies through simulations in QuTip. Additionally, we explore potential strategies to adapt two alternative readout schemes from transmon to fluxonium qubits. 
+
+
+\section{\label{sec2} Dispersive Readout in a Nutshell}
+
+There are two competing criteria that determine the readout quality of a qubit's state. On the one hand, a superconducting qubit is highly sensitive to its environment, and isolating the qubit often improves its coherence time. Therefore, introducing as little energy to the qubit as possible is a desirable feature of any readout scheme. On the other hand, measuring the state of the qubit fundamentally requires interacting with the qubit, so a minimally invasive readout interface is generally ill-suited to reliable, high-precision measurement. 
+
+Dispersive readout seeks to circumvent this tension by coupling a linear resonator to the qubit. The qubit's state becomes entangled with the resonator's frequency. Thus, measuring the qubit can be accomplished indirectly by only probing the resonator, preserving the qubit's isolation. More precisely, the frequency of the resonator is shifted by an amount depending on the state of the qubit. Obtaining a high-fidelity measurement is reduced to achieving a good signal-to-noise ratio in the signal of the resonator.
+
+To better understand how readout can be optimized, it is worth highlighting the physics underlying the dispersive regime. The general description of a two level system coupled to a quantum harmonic oscillator is given by the Jaynes-Cummings Hamiltonian \cite{Oliver}:
+
+\begin{equation}
+\Hat{H}_{\mbox{\tiny{JC}}} = \hbar \omega_r \left( a^{\dagger}a \right) + \frac{\hbar \freq}{2}\sigma_z + \hbar g \left( \sigma_{+}a + \sigma_{-}a^{\dagger}\right),
+\label{Eq:JCH}
+\end{equation}
+where in our case $\omega_r$ and $\omega_q$ are the resonator and qubit frequency respectively, $g$ is the qubit-resonator coupling rate. The operators corresponding to absorption and emission of the anharmonic oscillator are denoted by $\sigma_{+}$ and $\sigma_{-}$, the Pauli-Z spin operator is $\sigma_z$, and the annihilation and creation operators are $a, a^{\dagger}$, respectively. We note that this treatment makes use of the rotating wave approximation (RWA), which keeps only the terms of the Hamiltonian where the total number of excitations shared between the two-level system and the quantum mechanical mode remains constant (i.e. excitation number preserving terms); this approximation holds since the coupling of the omitted terms is responsible for very little population transfer between the states. 
+
+
+The detuning between the qubit and the resonator is defined as $\Delta = |\omega_r - \omega_q|$. At one extreme when $\Delta \ll g$, the system hybridizes and vacuum Rabi splitting occurs. Energy in the form of excitations to freely flow between the qubit and the resonator, often referred to as unwanted back-action in the context of readout, yet sometimes useful for the purposes of control. At the other extreme when $\Delta \gg g$, (called the dispersive limit), the qubit and resonator shift each other's frequencies instead of coherently swapping excitations. To briefly motivate why this behavior occurs, one can observe that $\lambda = \frac{g}{\Delta}$ may be taken as a small parameter, so second-order perturbation theory to the Jaynes-Cummings Hamiltonian above in terms of $\lambda$ may be applied. The lengthy process to then obtain an approximation entails adiabatically eliminating the coupling term (that is, $\hbar g \left( \sigma_{+}a + \sigma_{-}a^{\dagger}\right)$). We omit this step, which goes by many names, including van-Vleck perturbation theory and Schrieffer-Wolff transformation. For a detailed treatment, see \cite{}. The resulting Hamiltonian is
+\begin{equation}
+    H_{\text{disp}} = \bigg( \omega_r +\chi \sigma_z\bigg) \left( a^{\dagger}a + \frac{1}{2}\right) + \frac{\widetilde{\omega}_{\text{q}}}{2}\sigma_z,
+\label{Eq:JCHdisp}
+\end{equation}
+
+where $\chi = \frac{g^2}{\Delta}$ is the qubit-state dependent frequency shift, often referred to as the dispersive shift. While the outcome of the measurement is not altered by reading out of the system (i.e. it is Quantum Non-Demolition – QND), observe that the qubit frequency does also shift (by $+\chi$) as a result of the coupling, called the Lamb shift. 
+
+There are three points on Eq. (2) worth highlighting: 
+\begin{enumerate}
+\item The approximation is only valid when assuming that the resonator photon population,  $\Bar{n} = a^{\dagger} a$, is smaller than the critical photon number, $n_{\text{crit}} = \Delta^2 / (4g^2)$. 
+    \item The Hamiltonian is derived for a two level system. The dispersive shift is altered when additional excited states are considered. Notably, higher levels outside the computational subspace must be considered to achieve accurate predictions of the frequency shifts in simulations. In fact, in Sec. IV, we shall see how the effects on $\chi$ from higher order transitions in fluxonium can aid  readout. 
+    \item For qubits with positive anharmonicity, the sign of the dispersive shift  changes depending on the state. 
+\end{enumerate} 
+
+
+
+\section{Measurement-Induced State Transitions}\label{sec3}
+
+\subsection{Background}
+The signal-to-noise ratio for dispersive readout improves in the strength of the resonator. However, as previously remarked, when the average resonator photon number exceeds a certain threshold, the qubit is liable to be excited out of its computational subspace, called a Measurement-Induced State Transition (MIST). These transitions cause the measurement to become non-QND and increase the reset times required before further operations may be performed. The non-QND effect and added delay both inhibit error correcting codes. While MISTs in transmons have been explored, the circuit topology of fluxonium is fundamentally different. Without a clear model for understanding non-QND effects in fluxonium readout, optimizing the measurement protocol requires some trial and error. 
+
+The first paper analyzed in this section identifies a process by which higher-frequency modes residing in the fluxonium superinductance are simultaneously excited with the qubit, which they dub Parasitic-MISTs (PMISTs). The authors investigate the effects of PMISTs on the non-QND behavior of the qubit. We summarize the paper's methodology and findings and then remark on several directions for further study that incorporate ideas from a couple papers to be discussed in the following section. 
+
+The second paper seeks to experimentally map the state evolution of fluxonium qubits in the presence of resonator photons. They find that photons induce excitations in the qubits both within and outside the qubit computational subspace and note that an external spurious mode must be responsible to explain the effects. We summarize the . This paper 
+
+\subsection{\href{https://arxiv.org/abs/2412.14788}{Impact of Josephson junction array modes on fluxonium readout}}
+ The authors confine their focus to heavy fluxonium operated at its flux sweet spot.  depth Since the circuit topology of fluxonium is fundamentally different than that of a transmon, the MIST behavior requires an independent analysis. The authors' method is nevertheless inspired by the similar approaches used for transmons. Specifically, the paper applies an adiabatic Floquet branch analysis, in which the Floquet eigen-states of the Hamiltonian of the driven circuit are calculated by truncating the levels of the qubit space and parasitic modes. They apply these calculations to make predictions on the. They find that MIST processes can be relevant when using realistic circuit parameters and relatively low readout drive powers that they validate using full time-dependent simulations. 
+
+The authors identify the corresponding circuit parameters that precipitate these parasitic processes, such that future works may avoid these regimes. Fortunately, despite a strong coupling between the qubit and parasitic modes, they find that PMIST are unlikely to occur for the vast majority of readout cavity frequencies. In particular they determine PMIST transition probabilities as a function of readout cavity ring-up rate. [insert figure]
+
+They also map the sensitivity of PMIST processes to parasitic mode coupling strengths [insert figure].
+
+
+In addition, they find PMISTs contribute to dephasing even after a measurement is complete.  
+
+Through highlighting and analyzing PMISTs, the authors demonstrate the importance of theoretically understanding the impact of modes driving excitations on readout of superconducting circuits. 
+
+As will be soon explored in more depth, while the flux sweet spot yields optimal $T_1$ time, the dispersive shift is much higher at other spots, which can exploited during readout.
+
+\subsection{\href{https://arxiv.org/abs/2402.07360}{Measurement-induced state transitions in dispersive qubit readout schemes}}
+
+As was evident in the previous paper, the effect of the environment on the probability of measurement-induced state transitions is neither charted, nor completely understood. This is in part a result of measurement-induced state transitions making it possible for two qubit-resonator systems with identical dispersive shifts and loss rates to have divergent behavior in the number of readout photons.  A deeper understanding of the relationship between the choice of parameters and the likelihood of MISTs would help in optimizing readout as well as create a method for comparing the readout performance between qubit types. The authors in this paper consider two metrics for determining the maximum number of photons that can be used for dispersive readout without inducing state transitions. Specifically, they define 'qubit purity', which quantifies the entanglement. Through time-domain simulation of the readout process, they find that qubit purity remains
+nearly at unity unless a state transition occurs. The second factor, matrix-element error, can aid in accurately determining dressed states as well as straightforwardly evaluating how the drive increases the size of the dressed coherent state. 
+
+\subsection{Comparison}
+
+The two papers complement each other in their methodology and intention. The first paper seeks to establish methods towards building a firmer theoretical foundation for MIST behavior. In contrast, the second paper takes a less granular approach, and deduces via experimental investigation what relevant quantities may aid in making readout schemes practically aware and robust to MISTs.
+
+\section{Optimizing the Dispersive Regime}\label{sec4}
+\subsection{\href{https://arxiv.org/abs/2309.17286}{Flux-pulse-assisted Readout of a Fluxonium Qubit}}
+
+Authors Stefanski and Andersen observed that, although qubits have a particular 'sweet-spot' in their parameter space for performing operations, that does not correspond to the parameters which yield the largest dispersive shift. In this paper, they design theoretical simulations to determine the optimal flux-bias so the dispersive shift at readout time is maximized, before returning the qubit back to the sweet spot. Since the dispersive shift is larger, they can achieve a $5$x improvement in the Signal-to-Noise-Ratio (SNR) without much extra lag time (155 nS). This technique achieves the fastest reported readout of a fluxonium which still maintains an assignment fidelity better than or comparable to those of other works. 
+
+Furthermore, they tested whether their performance improvement was robust to the presence of quasi-static flux noise in concert with finite measurement efficiency. They also investigated the impact of the increased Purcell rate at their calculated flux-pulse-assisted readout point.
+
+\subsection{\href{https://arxiv.org/abs/2501.17807}{Readout-induced leakage of the fluxonium qubit}}
+
+Increasing photon numbers to improve readout fidelity causes dispersive readout to become non-quantum non-demolition (non-QND), meaning it changes the post-measurement qubit state. This is problematic because quantum error correction requires measurements that both have high fidelity and preserve the post-measurement state. In this paper, the authors identify two distinct Non-QND mechanisms. First, they identify that transitions to higher-energy fluxonium states are a culprit, which in turn are determined by Hamiltonian parameters. Second, they observe resonator-induced coupling to spurious two-level systems (TLS) modes, as was previously described in this review by other papers, can lead to non-QND behavior. Nonetheless, the origin of the non-QND effects in fluxonium remains unclear, and without a robust model the device construction and measurement protocols can only be optimized mainly by trial and error. Note that, as described above, recent theoretical work on the subject conjectures measurement-induced transitions through higher-frequency parasitic modes residing in the fluxonium superinductance contribute to the non-QND effects in fluxonium. However, the picture is far from complete.
+
+Furthermore, they discovered that these effects are state-dependent. Non-QND effects are significantly worse when starting in the excited state $|e\rangle$ compared to the ground state $|g\rangle$. For instance, the probability of staying in $|e\rangle$ drops as low as 0.5 with just $7$ photons. It is somewhat surprising that resonance features at specific photon numbers, which can be traced to TLS coupling. Additionally, these resonances shift with external flux and thermal cycling, which indicates material defects.
+
+They conclude that devices with lower dispersive shift exhibit better QND behavior. However, this presents challenges with achieving high-fidelity single measurements. Additionally, the resonator frequency affects susceptibility to higher-state transitions. As far as I know, this study creates the first comprehensive mapping of fluxonium state evolution under resonator drive. It also successfully explains both predictable (higher-state transitions) and unpredictable (TLS-induced) non-QND effects. Lastly, it provides concrete parameters for optimizing QND measurement fidelity.
+
+
+\section{Discussion and Extensions}\label{sec5}
+
+\subsection{Flux-Pulse Assisted Readout of Fluxonium}
+
+This paper targeted a frequency at a sweet-spot around $1$ GHz. The newer heavy-fluxonium has a much smaller charging energy and frequency (tens to hundreds of MHz) and get state-of-the-art coherence times. There simulations did not explore this regime and since there code is publicly on GitHub, I want to see if I can simulate flux-pulse assisted readout for a parameter space specifically for heavy fluxonium. 
+
+\subsection{Readout-induced leakage of the fluxonium qubit}
+
+
+Several avenues I would consider to extend this paper include:
+\begin{itemize}
+    \item Implementing longitudinal readout to minimize Stark shifts
+    \item Using additional drives to tune spurious mode frequencies during readout
+    \item Strategically placing resonator frequencies to minimize transitions to specific higher-energy states
+\end{itemize}
+
+
+\subsection{(P)MISTs}
+Since the paper rather comprehensively solves the problem of mitigating parasitic mode excitations, namely by through carefully choosing the readout cavity frequency and varying junction energies. I do not have a particular extension of this paper in mind, other than to incorporate a consideration of PMISTs by choosing a particular range of values for my simulations. 
+
+
+\subsection{\href{https://arxiv.org/abs/2406.14501}{Quantum Limits of Superconducting-Photonic Links \& Their Extension to mm-Waves}}
+
+    A main concern with scaling superconducting qubits is the readout and control creates heat and wiring complexity issues. An alternative method based on photonics has been proposed, but this still has a fundamental trade off between efficiency, and the noise of the readout. This paper performs spectroscopy analysis of the frequency of a superconducting resonator in order to better understand the tradeoff. They consider generating higher frequency electrical signals, namely millimeter-waves (100 GHz), using laser light to overcome this trade off. 
+
+    These frequencies are just too far from the low frequencies fluxonium prefer to luxuriate in, which is what gives them such long $T_1$ time. However, other \href{https://arxiv.org/abs/2304.06087}{architectures} perform two qubit gates between fluxonium qubits using a transmon coupler as an intermediary. I am wondering what challenges one would face in designing a chip that not only uses transmons for gate operations, but while were at it, employs a superconducting-photonic linked readout scheme of transmons coupled to fluxonium qubits. 
+
+\end{document}
