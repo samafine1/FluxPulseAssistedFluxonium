@@ -12,12 +12,15 @@ from scipy.integrate import quad
 #used in DispersiveShift.ipynb and ResonatorDynamics.ipynb
 
 def truncate_disshift(hamiltonian, expectoperator):
+
+    
     #sorts eigenvalues and eigenvectors to get the lowest dressed states
     evals, evecs = hamiltonian.eigenstates()
     evals_sort = np.argsort(evals)
     evals = evals[evals_sort]
-    evecs = evecs[evals_sort]
+    evecs = [evecs[i] for i in evals_sort]  # Ensure evecs remains a list of Qobj
     expvals = expect(expectoperator, evecs)
+
     expvals_index = np.argwhere(expvals < 1.2) #returns indices where expval is less than 1.1
     expvals_index_res0 = np.argwhere(expvals < 0.5)
     expvals_index_res1 = np.argwhere(expvals > 0.55)
